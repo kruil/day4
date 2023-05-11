@@ -28,6 +28,7 @@ class ViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: Cell.reuseIdentifier, for: indexPath)
         cell.textLabel?.text = model.name
         cell.accessoryType = model.isChecked ? .checkmark : .none
+        cell.selectionStyle = .none
         return cell
     }
     
@@ -54,6 +55,7 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         defer { snapshot() }
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
+        cell.selectionStyle = .default
         var selectedModel = data[indexPath.row]
         if selectedModel.isChecked {
             data[indexPath.row].isChecked = false
